@@ -50,9 +50,14 @@ Por lo tanto, tomamos:
 Clave = NOVENA
 ```
 
-<!-- Agregar captura donde se vean las estrellas -->
-![Obtención de la clave](images/estrellas.png)
+![Obtención de la clave superior](images/ClaveSuperior.png)
 
+
+![Obtención de la clave derecha](images/ClaveDerecha.png)
+
+![Obtención de la clave inferior](images/ClaveInferior.png)
+
+![Obtención de la clave izquierda](images/ClaveIzquierda.png)
 ### 3. Identificación del cifrado
 
 Con las dos pistas principales:
@@ -93,7 +98,6 @@ se obtuvo:
 POCTF{2.570.PAJIVZIVBRLWGWE7.FD6LFLRNMTDULUNPOY2BSWBTZC}
 ```
 
-<!-- Agregar captura de dCode -->
 ![Descifrado con dCode](images/ResueltoDCode.png)
 
 ### 5. Script en Python
