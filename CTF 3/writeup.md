@@ -1,5 +1,7 @@
 # Write-up: Everything Left Open (Forensics)
 
+![Página del reto](images/desafio.png)
+
 ## Introducción
 
 El desafío **"Everything Left Open"** pertenecía a la categoría **Forensics**.  
@@ -10,13 +12,13 @@ POCTF{...}
 ```
 
 El enunciado indicaba que el equipo había sido recuperado con el navegador abierto y que existían datos ingresados a medio completar en un formulario. Esto sugería que la información buscada podía encontrarse en el estado de la sesión del navegador.
+![Readme incluido](images/Readme.png)
 
-![Página del reto](images/desafio.png)
 
 ## Descripción del reto
 
 Al descomprimir el archivo proporcionado por el desafío se obtuvo la estructura de un perfil de usuario de **Mozilla Firefox**, identificado por la carpeta:
-
+![Archivos](images/Archivos2.png)
 ```text
 k-vance-profile/
 ```
@@ -56,7 +58,6 @@ sessionstore-backups/recovery.jsonlz4
 
 Este archivo contenía información correspondiente al estado de la sesión recuperada.
 
-<!-- Agregar captura de los archivos del perfil -->
 ![Perfil de Firefox](images/perfil.png)
 
 ### 2. Análisis de `recovery.jsonlz4`
@@ -102,7 +103,7 @@ POCTF{109.570.XU55BITKMCNUUYXR.BXHYXXRXYKNORE6IZPHJ56UIQX}
 Para hacer la solución reproducible también se utilizó el script:
 
 ```text
-jsonlz4.py
+solve.py
 ```
 
 El script requiere la librería `lz4`, que puede instalarse con:
@@ -138,7 +139,7 @@ flag_match = re.search(r'POCTF\{[^}]+\}', json_str)
 Para ejecutar el script:
 
 ```bash
-python jsonlz4.py
+python solve.py
 ```
 
 Si la flag se encuentra correctamente, el programa muestra:
@@ -148,7 +149,7 @@ Si la flag se encuentra correctamente, el programa muestra:
 ```
 
 ![Salida del script](images/python.png)
-
+(el archivo antes se llamaba jsonlz4.py, ahora es solve.py)
 ## Flag
 
 ```text
@@ -165,4 +166,4 @@ La pista principal apuntaba a información que había quedado cargada en un form
 
 Después de retirar la cabecera `mozLz40\0` y descomprimir el contenido con LZ4, fue posible inspeccionar los datos de la sesión y encontrar la flag.
 
-El script `jsonlz4.py` permite reproducir de forma automática todo el proceso de extracción y búsqueda.
+El script `solve.py` permite reproducir de forma automática todo el proceso de extracción y búsqueda.

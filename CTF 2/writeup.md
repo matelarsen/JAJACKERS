@@ -1,8 +1,12 @@
 # Write-up: Letters Never Sent (Cryptography)
 
+![Página previa al reto](images/Inicio.png)
+
 ## Introducción
 
 El reto **"Letters Never Sent"** de POCTF consistía en descifrar un texto cifrado a partir de varias pistas incluidas en el propio desafío.
+
+![Página del reto](images/Reto.png)
 
 El ciphertext proporcionado era:
 
@@ -16,9 +20,6 @@ Sabíamos además que la flag final debía comenzar con el formato habitual:
 POCTF{...}
 ```
 
-![Página previa al reto](images/Inicio.png)
-
-![Página del reto](images/Reto.png)
 
 ## Proceso de resolución
 
@@ -38,6 +39,22 @@ Esta frase era una pista importante, ya que Francis Beaufort da nombre al **cifr
 
 Además de la carta, había varias palabras marcadas con **estrellas rojas** alrededor del desafío.
 
+Borde superior:
+
+![Obtención de la clave superior](images/ClaveSuperior.png)
+
+Borde derecho girado 90 grados:
+
+![Obtención de la clave derecha](images/ClaveDerecha.png)
+
+Borde inferior:
+
+![Obtención de la clave inferior](images/ClaveInferior.png)
+
+Borde izquierdo girado 90 grados:
+
+![Obtención de la clave izquierda](images/ClaveIzquierda.png)
+
 Leyéndolas en el orden correspondiente, las letras destacadas formaban:
 
 ```text
@@ -50,14 +67,7 @@ Por lo tanto, tomamos:
 Clave = NOVENA
 ```
 
-![Obtención de la clave superior](images/ClaveSuperior.png)
 
-
-![Obtención de la clave derecha](images/ClaveDerecha.png)
-
-![Obtención de la clave inferior](images/ClaveInferior.png)
-
-![Obtención de la clave izquierda](images/ClaveIzquierda.png)
 ### 3. Identificación del cifrado
 
 Con las dos pistas principales:
@@ -85,6 +95,8 @@ Los caracteres que no pertenecen al alfabeto, como `{`, `}`, números y puntos, 
 
 Como primera comprobación utilizamos el decoder de **Beaufort Cipher** de dCode.
 
+![Descifrado con dCode](images/ResueltoDCode.png)
+
 Configurando:
 
 ```text
@@ -98,7 +110,6 @@ se obtuvo:
 POCTF{2.570.PAJIVZIVBRLWGWE7.FD6LFLRNMTDULUNPOY2BSWBTZC}
 ```
 
-![Descifrado con dCode](images/ResueltoDCode.png)
 
 ### 5. Script en Python
 
@@ -126,13 +137,18 @@ for char in ciphertext:
 print("".join(result))
 ```
 
-La salida del script es:
+Imágen usando el script en la terminal:
+
+![Salida del script](images/Script.png)
+
+(El archivo antes se llamaba decode.py, ahora es solve.py)
+
+Se obtuvo la flag:
 
 ```text
 POCTF{2.570.PAJIVZIVBRLWGWE7.FD6LFLRNMTDULUNPOY2BSWBTZC}
 ```
 
-![Salida del script](images/Script.png)
 
 ## Flag
 
